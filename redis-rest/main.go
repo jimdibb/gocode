@@ -32,7 +32,7 @@ func main() {
 	router.HandleFunc("/people", GetPeople).Methods("GET") /*TBD*/
 	router.HandleFunc("/people/{id}", GetPerson).Methods("GET")
 	router.HandleFunc("/people", CreatePerson).Methods("POST")
-	router.HandleFunc("/people/{id}", DeletePerson).Methods("DELETE") /*TBD*/
+	router.HandleFunc("/people/{id}", DeletePerson).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8000", router))
 
 }
