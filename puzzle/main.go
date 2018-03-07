@@ -34,7 +34,7 @@ func compute(lim int, c chan int) {
 
 func main() {
 	rand.Seed(9825245)
-	limit := 200000
+	limit := 2000
 	procs := 1000
 	c := make(chan int)
 	for i := 0; i < procs; i++ {
@@ -46,6 +46,6 @@ func main() {
 		odds += int64(<-c)
 	}
 	evens := int64(procs*limit) - odds
-
-	fmt.Printf("Odds: %d, Evens: %d", odds, evens)
+	p := float64(odds) / float64(odds+evens)
+	fmt.Printf("Odds: %d, Evens: %d, Prob of odd: %f", odds, evens, p)
 }
