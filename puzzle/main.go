@@ -3,11 +3,11 @@ package main
 import "fmt"
 import "math/rand"
 
-var odds, evens float32
+var odds, evens int64
 
-func compute(lim int, c chan int) {
+func compute(lim int, c chan int64) {
 	tickets := [18]int{3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1}
-	var odds int
+	var odds int64
 	for i := 0; i < lim; i++ {
 		//	tmap := make(map[int]bool)
 
@@ -36,14 +36,14 @@ func main() {
 	rand.Seed(9825245)
 	limit := 2000
 	procs := 1000
-	c := make(chan int)
+	c := make(chan int64)
 	for i := 0; i < procs; i++ {
 		go compute(limit, c)
 	}
 
 	var odds int64
 	for i := 0; i < procs; i++ {
-		odds += int64(<-c)
+		odds += <-c
 	}
 	evens := int64(procs*limit) - odds
 	p := float64(odds) / float64(odds+evens)
