@@ -6,7 +6,7 @@ import "math/rand"
 var odds, evens int64
 
 func compute(lim int, c chan int64) {
-	tickets := [18]int{3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1}
+	tickets := []int{3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1}
 	var odds int64
 	for i := 0; i < lim; i++ {
 		//	tmap := make(map[int]bool)
@@ -14,7 +14,7 @@ func compute(lim int, c chan int64) {
 		sum := 0
 		for n := 0; n < 3; n++ {
 
-			tick := rand.Intn(18)
+			tick := rand.Intn(len(tickets))
 			/*
 				if tmap[tick] == false {
 					tmap[tick] = true
