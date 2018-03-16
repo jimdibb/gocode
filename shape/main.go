@@ -19,7 +19,7 @@ type factory interface {
 
 type shapefactory struct{}
 
-func (f shapefactory) Make(t string, size float32) shape {
+func (f shapefactory) Create(t string, size float32) shape {
 	if t == "square" {
 		return square{length: size}
 	}
@@ -55,8 +55,8 @@ func (c circle) Area() float32 {
 
 func main() {
 	var f shapefactory
-	s := f.Make("square", 5)
-	c := f.Make("circle", 1)
+	s := f.Create("square", 5)
+	c := f.Create("circle", 1)
 
 	fmt.Println("area", s.Area())
 	fmt.Println("Perimeter", s.Perimeter())
