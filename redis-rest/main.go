@@ -13,6 +13,7 @@ import (
 
 // Data types
 
+// Person defines a record for a person
 type Person struct {
 	ID        string   `json:"id,omitempty"`
 	Firstname string   `json:"firstname,omitempty"`
@@ -20,6 +21,7 @@ type Person struct {
 	Address   *Address `json:"address,omitempty"`
 }
 
+// Address of a person
 type Address struct {
 	City  string `json:"city,omitempty"`
 	State string `json:"state,omitempty"`
@@ -37,10 +39,12 @@ func main() {
 
 }
 
+// GetPeople returns the whole list of users
 func GetPeople(w http.ResponseWriter, r *http.Request) {
 	// return the whole list of users
 }
 
+// GetPerson returns a single user
 func GetPerson(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)          // the ID of the person requested
 	item := retrieve(params["id"]) // get it from Redis
@@ -53,6 +57,7 @@ func GetPerson(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
+// CreatePerson adds a new record
 func CreatePerson(w http.ResponseWriter, r *http.Request) {
 	// create a new Person record
 	var person Person
@@ -69,6 +74,7 @@ func CreatePerson(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
+// DeletePerson removes a person record
 func DeletePerson(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	numRemoved := remove(params["id"])
